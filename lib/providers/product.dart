@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-// if we mark a thing as final it is expected to get that when it is created
-class Product {
+class Product with ChangeNotifier {
   final String id;
   final String title;
   final String description;
   final double price;
   final String imageUrl;
-  bool
-      isFavorite; // not marked as final because it is tracked by the user (immutable)
+  bool isFavorite;
 
   Product({
     @required this.id,
@@ -18,4 +16,9 @@ class Product {
     @required this.imageUrl,
     this.isFavorite = false,
   });
+
+  void toggleFavoriteStatus() {
+    isFavorite = !isFavorite;
+    notifyListeners();
+  }
 }

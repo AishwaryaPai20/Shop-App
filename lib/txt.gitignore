@@ -1,0 +1,73 @@
+Creating an Shop App using flutter and dart.
+
+"Managing Screens"
+
+1. product_overview_screen.dart
+
+-> Created List<Product> loadedProducts
+-> Created a Scaffold
+--> Contains GridView Builder()
+| Contains itemCount 
+| Contains itemBuilder
+| gridDelegate for appropriate spacing between grids
+
+2. product_detail_screen.dart
+
+-> after naviation shows a differnt screen with title 
+# ProductDetailScreen(title)
+-> i will extract the arguments using ModalRoute.of(context).setting.arguments as String
+
+"Managing widgets"
+
+1. product_item.dart
+
+-> Created a Product() constructor
+-> Building a GridTile 
+| Contains footer as GridTileBar
+| Instead of footer I can header to get the title on the top of image
+| Contains trailing 
+| Contains title
+| Added fonts and colors 
+-> Refactored gridtilebar into ClipRRect to adjust its borderRadius
+-> Wrapped the image with GestureDetector and used Navigaor.of(context).push() to navigate to product_detail_screen
+-> To optimize the code for larger codes we can use pushNamed instead of pushName
+# builder: (ctx) => ProductDetailScreen(),
+-> added the routeName of ProductDetailScreen() and arguments 
+
+"Managing providers"
+
+1. products.dart
+
+-> Creating list of products as used underscore to make it not accessible from outside
+-> we can access the private using get items and return [...items] (copy of items using spread operator so to avoid direct access to private)
+-> changes can be listened to using notifyListeners
+
+"Managing models"
+
+1. product.dart
+
+-> intialized product details using final and added it as required in Product constructor
+
+"Managing the main.dart file"
+
+-> set the home as ProductsOverViewScreen
+-> Adding routes for easier naviagtion between the screens and optimizing the code
+
+
+Added fonts to pubspec.yaml file
+
+
+Why to use an state app management instead of constructors?
+-> passing data via constructors can be difficult
+-> unnecessary rebuilds of the entire app or major parts of the app
+-> We can have app state or local state (that depends on the widget eg loading spinner)
+
+Provider Package and Pattern
+
+-> Add a state/data provider ro a particular widget
+-> Access the child widgets in its child widgets using listener
+-> So which build() running the app only the widget with listener is updated
+
+Added provider package from pub.development
+# import 'package:provider/provider.dart';
+by using the notify listeners only the widgets having listeners ill change or get updated
