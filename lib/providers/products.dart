@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'product.dart';
-import 'package:provider/provider.dart';
-import '../screens/product_detail_screen.dart';
+
+import './product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -38,8 +37,8 @@ class Products with ChangeNotifier {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
   ];
-  // To manage the favorites create a new variable
-  var _showFavoritesOnly = false;
+  // var _showFavoritesOnly = false;
+
   List<Product> get items {
     // if (_showFavoritesOnly) {
     //   return _items.where((prodItem) => prodItem.isFavorite).toList();
@@ -47,17 +46,26 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
-  Object get id => null;
-
-  List<Product> get favoriteItems{
-    return _items.where((prodItem)=>prodItem.isFavorite).toList();
+  List<Product> get favoriteItems {
+    return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
-  Product findById(String productId) {
+
+  Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
   void addProduct() {
-    // _items.add();
+    // _items.add(value);
     notifyListeners();
   }
 }
