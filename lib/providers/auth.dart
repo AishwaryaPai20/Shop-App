@@ -33,7 +33,7 @@ class Auth with ChangeNotifier {
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
     final url =
-        'https://shop-app-ba434-default-rtdb.firebaseio.com/$urlSegment?key=AIzaSyDnt3DnRXg7J-OCCZwKD829NudY10rbObU';
+        'https://identitytoolkit.googleapis.com/v1/accounts/$urlSegment?key=AIzaSyDnt3DnRXg7J-OCCZwKD829NudY10rbObU';
     try {
       final response = await http.post(
         url,
